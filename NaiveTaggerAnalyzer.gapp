@@ -13,50 +13,6 @@
   <application class="gate.util.persistence.SerialAnalyserControllerPersistence">
     <prList class="gate.util.persistence.CollectionPersistence">
       <localList>
-        <gate.util.persistence.PRPersistence>
-          <runtimeParams class="gate.util.persistence.MapPersistence">
-            <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-            <localMap>
-              <entry>
-                <string>setsToKeep</string>
-                <gate.util.persistence.CollectionPersistence>
-                  <localList/>
-                  <collectionType>java.util.ArrayList</collectionType>
-                </gate.util.persistence.CollectionPersistence>
-              </entry>
-              <entry>
-                <string>document</string>
-                <null/>
-              </entry>
-              <entry>
-                <string>annotationTypes</string>
-                <null/>
-              </entry>
-              <entry>
-                <string>corpus</string>
-                <null/>
-              </entry>
-              <entry>
-                <string>keepOriginalMarkupsAS</string>
-                <boolean>true</boolean>
-              </entry>
-              <entry>
-                <string>setsToRemove</string>
-                <null/>
-              </entry>
-            </localMap>
-          </runtimeParams>
-          <resourceType>gate.creole.annotdelete.AnnotationDeletePR</resourceType>
-          <resourceName>Document Reset PR</resourceName>
-          <initParams class="gate.util.persistence.MapPersistence">
-            <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-            <localMap/>
-          </initParams>
-          <features class="gate.util.persistence.MapPersistence">
-            <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-            <localMap/>
-          </features>
-        </gate.util.persistence.PRPersistence>
         <gate.util.persistence.LanguageAnalyserPersistence>
           <runtimeParams class="gate.util.persistence.MapPersistence">
             <mapType>gate.util.SimpleFeatureMapImpl</mapType>
@@ -129,7 +85,7 @@
               </entry>
             </localMap>
           </runtimeParams>
-          <resourceType>mcneill.TaggerAnalyzer</resourceType>
+          <resourceType>example.TaggerAnalyzer</resourceType>
           <resourceName>Tagging Analyzer</resourceName>
           <initParams class="gate.util.persistence.MapPersistence">
             <mapType>gate.util.SimpleFeatureMapImpl</mapType>

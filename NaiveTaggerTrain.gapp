@@ -19,7 +19,10 @@
             <localMap>
               <entry>
                 <string>setsToKeep</string>
-                <null/>
+                <gate.util.persistence.CollectionPersistence>
+                  <localList/>
+                  <collectionType>java.util.ArrayList</collectionType>
+                </gate.util.persistence.CollectionPersistence>
               </entry>
               <entry>
                 <string>document</string>
@@ -234,8 +237,8 @@
               </entry>
             </localMap>
           </runtimeParams>
-          <resourceType>mcneill.TaggerTrainer</resourceType>
-          <resourceName>Category Counter</resourceName>
+          <resourceType>example.TaggerTrainer</resourceType>
+          <resourceName>Tagging Trainer</resourceName>
           <initParams class="gate.util.persistence.MapPersistence">
             <mapType>gate.util.SimpleFeatureMapImpl</mapType>
             <localMap/>
