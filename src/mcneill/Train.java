@@ -4,7 +4,6 @@ import gate.Corpus;
 import gate.DataStore;
 import gate.Document;
 import gate.Factory;
-import gate.FeatureMap;
 import gate.Gate;
 import gate.creole.SerialAnalyserController;
 import gate.util.GateException;
@@ -17,8 +16,6 @@ import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
@@ -34,7 +31,7 @@ public class Train {
 	/**
 	 * Train a model from a list of document URLs.
 	 * 
-	 * @param gappPath
+	 * @param trainerGappPath
 	 *            saved Tagger Trainer GAPP file
 	 * @param modelPath
 	 *            location to write model file
@@ -44,14 +41,14 @@ public class Train {
 	 * @throws IOException
 	 */
 	@SuppressWarnings("unchecked")
-	public static CategoryCounts<String, String> trainFromURLs(String gappPath,
-			String modelPath, ArrayList<String> urls) throws GateException,
-			IOException {
+	public static CategoryCounts<String, String> trainFromURLs(
+			String trainerGappPath, String modelPath, ArrayList<String> urls)
+			throws GateException, IOException {
 		// Create an accumulator for type counts across all the documents.
 		CategoryCounts<String, String> categoryCounts = new CategoryCounts<String, String>();
 		// Load the category counter plugin.
 		SerialAnalyserController categoryCounter = (SerialAnalyserController) PersistenceManager
-				.loadObjectFromFile(new File(gappPath));
+				.loadObjectFromFile(new File(trainerGappPath));
 		// Create a dummy corpus to hold one document at a time.
 		Corpus corpus = Factory.newCorpus("Training Data");
 		try {
@@ -81,7 +78,7 @@ public class Train {
 	/**
 	 * Train a model from a corpus in a data store.
 	 * 
-	 * @param gappPath
+	 * @param trainerGappPath
 	 *            saved Tagger Trainer GAPP file
 	 * @param modelPath
 	 *            location to write model file
@@ -93,11 +90,11 @@ public class Train {
 	 * @throws IOException
 	 */
 	public static CategoryCounts<String, String> trainFromDataStore(
-			String gappPath, String modelPath, String dataStorePath,
+			String trainerGappPath, String modelPath, String dataStorePath,
 			String corpusName) throws GateException, IOException {
 		// Load the category counter plugin.
 		SerialAnalyserController categoryCounter = (SerialAnalyserController) PersistenceManager
-				.loadObjectFromFile(new File(gappPath));
+				.loadObjectFromFile(new File(trainerGappPath));
 		// Create an accumulator for type counts across all the documents.
 		CategoryCounts<String, String> categoryCounts = new CategoryCounts<String, String>();
 		// Open the data store.
@@ -108,25 +105,8 @@ public class Train {
 			// Extract lists of corpus names and LRIDs from the data store.
 			// These lists have corresponding elements.
 			logger.info("Open corpus " + corpusName + " in " + dataStorePath);
-			FeatureMap params = Factory.newFeatureMap();
-			@SuppressWarnings("unchecked")
-			List<String> names = dataStore
-					.getLrNames("gate.corpora.SerialCorpusImpl");
-			@SuppressWarnings("unchecked")
-			List<String> lrids = dataStore
-					.getLrIds("gate.corpora.SerialCorpusImpl");
-			// Find the LRID corresponding to the corpus name.
-			String lrid;
-			try {
-				lrid = lrids.get(names.indexOf(corpusName));
-			} catch (ArrayIndexOutOfBoundsException e) {
-				throw new GateException(dataStorePath
-						+ " does not contain corpus " + corpusName);
-			}
-			params.put(DataStore.DATASTORE_FEATURE_NAME, dataStore);
-			params.put(DataStore.LR_ID_FEATURE_NAME, lrid);
-			Corpus corpus = (Corpus) Factory.createResource(
-					"gate.corpora.SerialCorpusImpl", params);
+			Corpus corpus = Datastore.loadCorpusFromDatastore(dataStore,
+					corpusName);
 			try {
 				// Make category counts over all the documents in the corpus.
 				categoryCounter.setCorpus(corpus);
@@ -161,7 +141,7 @@ public class Train {
 		BasicConfigurator.configure();
 		Gate.init();
 
-		String gappPath = args[0];
+		String trainerGappPath = args[0];
 		String modelPath = args[1];
 
 		// TODO Get data store vs. URLs difference from a command line switch.
@@ -170,7 +150,7 @@ public class Train {
 		if (fromDatastore) {
 			String dataStorePath = args[2];
 			String corpusName = args[3];
-			categoryCounts = trainFromDataStore(gappPath, modelPath,
+			categoryCounts = trainFromDataStore(trainerGappPath, modelPath,
 					dataStorePath, corpusName);
 		} else {
 			// Parse the command line.
@@ -182,7 +162,8 @@ public class Train {
 			for (int i = 2; i < args.length; i++)
 				documentPaths.add(args[i]);
 			// Collect counts from the training documents.
-			categoryCounts = trainFromURLs(gappPath, modelPath, documentPaths);
+			categoryCounts = trainFromURLs(trainerGappPath, modelPath,
+					documentPaths);
 		}
 
 		// Create a model from the counts and save it.

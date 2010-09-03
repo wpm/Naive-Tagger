@@ -11,6 +11,7 @@ import gate.FeatureMap;
 import gate.creole.ExecutionException;
 import gate.creole.metadata.CreoleParameter;
 import gate.creole.metadata.CreoleResource;
+import gate.creole.metadata.RunTime;
 
 /**
  * A GATE language analyzer that assigns part-of-speech categories to tokens
@@ -85,6 +86,7 @@ public class TaggerAnalyzer extends TaggingMachineLearner {
 	 * @param modelPath
 	 *            the modelPath to set
 	 */
+	@RunTime
 	@CreoleParameter(comment = "Path to the tagger model file.")
 	public void setModelPath(String modelPath) {
 		this.modelPath = modelPath;
