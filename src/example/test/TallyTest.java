@@ -1,8 +1,10 @@
-package example;
+package example.test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import example.Tally;
 
 /**
  * @author W.P. McNeill
