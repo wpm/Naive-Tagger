@@ -36,7 +36,6 @@ public class CategoryCounts<T extends Comparable<T>, C extends Comparable<C>>
 	 */
 	private final class CategoryCountsComparator implements
 			Comparator<Map.Entry<T, Tally<C>>> {
-		@Override
 		public int compare(Map.Entry<T, Tally<C>> e1, Entry<T, Tally<C>> e2) {
 			Long c1 = e1.getValue().getTotalCount();
 			Long c2 = e2.getValue().getTotalCount();

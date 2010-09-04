@@ -35,7 +35,6 @@ public class Tally<K extends Comparable<K>> implements Serializable {
 	 */
 	private final class TallyComparator implements
 			Comparator<Map.Entry<K, Long>> {
-		@Override
 		public int compare(Map.Entry<K, Long> e1, Map.Entry<K, Long> e2) {
 			int c = e2.getValue().compareTo(e1.getValue());
 			return c != 0 ? c : e1.getKey().compareTo(e2.getKey());
