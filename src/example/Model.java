@@ -17,7 +17,7 @@ import java.util.Map.Entry;
  * 
  * @author W.P. McNeill
  */
-public class Model<T, C extends Comparable<C>> implements Serializable {
+public class Model<T extends Comparable<T>, C extends Comparable<C>> implements Serializable {
 	private static final long serialVersionUID = 6153442941071347565L;
 
 	/**
