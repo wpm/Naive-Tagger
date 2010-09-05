@@ -7,7 +7,9 @@
 	<property name="src.dir" value="src" />
 	<property name="classes.dir" value="bin" />
 	<property name="gate.home" location="/Applications/GATE-6.0-beta1" />
-	<property name="junit4" value="/Applications/eclipse/plugins/org.junit_4.8.1.v4_8_1_v20100427-1100" />
+	<property name="junit4" value="/usr/share/java" />
+	<property name="jarfile" value="NaiveTagger.jar" />
+
 
 	<fileset id="gate.libs" dir="${gate.home}/lib">
 		<include name="*.jar" />
@@ -20,7 +22,7 @@
 	</fileset>
 
 	<fileset dir="${junit4}" id="junit4">
-		<include name="*.jar" />
+		<include name="junit.jar" />
 	</fileset>
 
 	<path id="compile.classpath">
@@ -38,12 +40,13 @@
 	</target>
 
 	<target name="jar" depends="compile">
-		<jar destfile="NaiveTagger.jar">
+		<jar destfile="${jarfile}">
 			<fileset dir="${classes.dir}" />
 		</jar>
 	</target>
 
 	<target name="clean">
 		<delete dir="${classes.dir}" />
+		<delete file="${jarfile}" />
 	</target>
 </project>
