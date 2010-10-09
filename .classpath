@@ -3,23 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="/Applications/GATE-6.0-beta1/bin/gate.jar" sourcepath="/Applications/GATE-6.0-beta1/src">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/Applications/GATE-6.0-beta1/doc/javadoc/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Applications/GATE-6.0-beta1/lib/log4j-1.2.14.jar"/>
-	<classpathentry kind="lib" path="/Applications/GATE-6.0-beta1/lib/jdom.jar"/>
-	<classpathentry kind="lib" path="/Applications/GATE-6.0-beta1/lib/xercesImpl.jar"/>
-	<classpathentry kind="lib" path="/Applications/GATE-6.0-beta1/lib/nekohtml-1.9.14.jar"/>
-	<classpathentry kind="lib" path="/Applications/GATE-6.0-beta1/lib/tika-core-0.7.jar"/>
-	<classpathentry kind="lib" path="/Applications/GATE-6.0-beta1/lib/tika-parsers-0.7.jar"/>
-	<classpathentry kind="lib" path="/Applications/GATE-6.0-beta1/lib/gate-asm.jar"/>
-	<classpathentry kind="lib" path="/Applications/GATE-6.0-beta1/lib/ontotext.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/Applications/GATE-6.0-beta1/lib/xstream-1.2.jar"/>
-	<classpathentry kind="lib" path="/Applications/GATE-6.0-beta1/lib/gate-compiler-jdt.jar"/>
-	<classpathentry kind="lib" path="/Applications/GATE-6.0-beta1/lib/commons-io-1.4.jar"/>
-	<classpathentry kind="lib" path="/Applications/GATE-6.0-beta1/lib/commons-lang-2.4.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GATE"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
